@@ -1,0 +1,24 @@
+{
+  "name": "movie-review",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArunAyyappath/movie-review.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ArunAyyappath/movie-review/issues"
+  },
+  "homepage": "https://github.com/ArunAyyappath/movie-review#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "node-telegram-bot-api": "^0.50.0"
+  }
+}
