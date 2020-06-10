@@ -1,13 +1,13 @@
 require('dotenv').config();
 const { Telegraf } = require('telegraf')
 const { env : { TOKEN_KEY, MOVIE_API_KEY } } = process;
-const request = require('request');
+const axios = require('axios');
 const _ = require('underscore');
 const bot = new Telegraf(TOKEN_KEY);
 
 const welcomeMessage = (ctx) => {
   const { from: { first_name } } = ctx;
-  return(`Welcome ${first_name} 😊! \nI'm  Movie-review Telegram Bot.\nSend me movie name i will give you\nthe details of the movie.`);
+  return(`Welcome ${first_name} 😊! \nI'm  Movie-review Bot.\nSend me name of the movie, i will give you\nthe details and rating.`);
 }
 
 const getRatingValue = (Rating, movie) => {
@@ -24,8 +24,6 @@ const getRatingValue = (Rating, movie) => {
 const setUpTheStructure = (movie) => {
   let header = ['Title', 'Year', 'Country', 'Rated',
     'Released', 'Genre', 'Runtime', 'Director', 'Plot', 'Ratings'];
-  const lastIndex = _.findLastIndex(header);
-  console.log(lastIndex);
   let movieFormatted = '';
   header.map((value) => {
     let movieProperty = _.property(value)(movie);
@@ -50,10 +48,12 @@ bot.on(['sticker', 'photo'], (ctx) => ctx.reply('👍'));
 bot.hears('hi', (ctx) => (ctx.reply('Hey there')));
 bot.on('text', (ctx) => {
   const { message: { text } } = ctx
-  request(`${MOVIE_API_KEY}&t=${text}`, (error, response, body) => {
-    if(!error && response.statusCode === 200) {
-      ctx.reply(`looking for. . . ${text}`);
-      const response = JSON.parse(`${body}`);
+  ctx.reply(`looking for. . . ${text}`);
+
+  axios.get(`${MOVIE_API_KEY}&t=${text}`).then((res) => {
+    const { data } = res;
+    if (data.Response !== 'False') {
+      const response = data;
       const { Poster } = response;
       ctx.replyWithPhoto({
         url: Poster
@@ -63,6 +63,9 @@ bot.on('text', (ctx) => {
     } else {
       ctx.reply(`Sorry i cannot find ${text} 😢.`);
     }
-  })
+  }).catch((error) => {
+    ctx.reply(`Sorry i cannot find ${text} 😢.`);
+  });
+
 });
 bot.launch();
