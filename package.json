@@ -19,6 +19,8 @@
   "homepage": "https://github.com/ArunAyyappath/movie-review#readme",
   "dependencies": {
     "dotenv": "^8.2.0",
-    "node-telegram-bot-api": "^0.50.0"
+    "request": "^2.88.2",
+    "telegraf": "^3.38.0",
+    "underscore": "^1.10.2"
   }
 }
