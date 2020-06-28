@@ -1,0 +1,26 @@
+{
+  "name": "movie-review",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArunAyyappath/movie-review.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ArunAyyappath/movie-review/issues"
+  },
+  "homepage": "https://github.com/ArunAyyappath/movie-review#readme",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "dotenv": "^8.2.0",
+    "telegraf": "^3.38.0",
+    "underscore": "^1.10.2"
+  }
+}
