@@ -21,6 +21,6 @@
     "axios": "^0.19.2",
     "dotenv": "^8.2.0",
     "telegraf": "^3.38.0",
-    "underscore": "^1.10.2"
+    "underscore": "^1.12.1"
   }
 }
